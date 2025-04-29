@@ -20,11 +20,31 @@ public class SignInPage extends BasePage{
     @FindBy(css = "button.action.login.primary")  // Кнопка Sign In
     public WebElement signInButton;
 
+    @FindBy(xpath = "//div[contains(text(), 'The account sign-in was incorrect')]")
+    public WebElement wrongSignInMessage;
+
     public HomePage login(){
 
         email.sendKeys(ConfigurationReader.get("userName"));
         password.sendKeys(ConfigurationReader.get("userPassword"));
         signInButton.click();
         return new HomePage(context);
+    }
+
+    public HomePage wrongLogin(){
+
+        email.sendKeys(ConfigurationReader.get("wrongUserName"));
+        password.sendKeys(ConfigurationReader.get("userPassword"));
+        signInButton.click();
+        return new HomePage(context);
+    }
+
+    public boolean isUserNotSignedIn(){
+        try {
+            context.wait.until(ExpectedConditions.visibilityOf(wrongSignInMessage));
+            return wrongSignInMessage.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
