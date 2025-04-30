@@ -27,11 +27,4 @@ public class CartPage extends BasePage {
         return productNameInCart.getText().equalsIgnoreCase(expectedName);
     }
 
-    public void verifyCart(String expectedProductName) {
-        // Проверка, что мы на странице корзины
-        Assert.assertTrue("Not on cart page", isOnCartPage());
-
-        // Проверка, что товар добавлен в корзину
-        Assert.assertTrue("Product is not in the cart", isCorrectProductInCart(expectedProductName));
-    }
 }

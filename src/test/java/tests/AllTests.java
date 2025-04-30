@@ -83,7 +83,10 @@ public class AllTests extends BaseTest{
 
         CartPage cartPage = new CartPage(context);
         String expectedProductName = "Montana Wind Jacket";
-        cartPage.verifyCart(expectedProductName);
+
+
+        Assert.assertTrue("Not on cart page", cartPage.isOnCartPage());
+        Assert.assertTrue("Product is not in the cart", cartPage.isCorrectProductInCart(expectedProductName));
 
     }
 

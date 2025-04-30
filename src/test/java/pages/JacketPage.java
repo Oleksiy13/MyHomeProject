@@ -29,7 +29,9 @@ public class JacketPage extends BasePage{
     public WebElement cartItemCount;
 
     public void addToCart(){
+        context.wait.until(ExpectedConditions.elementToBeClickable(sizeButton));
         sizeButton.click();
+        context.wait.until(ExpectedConditions.elementToBeClickable(colorButton));
         colorButton.click();
         context.wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
