@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CartPage;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AllTests extends BaseTest{
 
     @Test
+    @DisplayName("Успешный вход пользователя в систему")
     public void loginTest(){
 
         HomePage homePage = new HomePage(context);
@@ -30,6 +32,7 @@ public class AllTests extends BaseTest{
     }
 
     @Test
+    @DisplayName("Неуспешная попытка входа с неверными учетными данными")
     public void wrongLoginTest() {
 
         HomePage homePage = new HomePage(context);
@@ -47,6 +50,7 @@ public class AllTests extends BaseTest{
     }
 
     @Test
+    @DisplayName("Поиск товара на сайте")
     public void searchProductTest(){
 
         HomePage homePage = new HomePage(context);
@@ -60,6 +64,7 @@ public class AllTests extends BaseTest{
     }
 
     @Test
+    @DisplayName("Проверка отсутствия результатов поиска по некорректному запросу")
     public void searchWrongProductTest(){
 
         HomePage homePage = new HomePage(context);
@@ -74,6 +79,7 @@ public class AllTests extends BaseTest{
     }
 
     @Test
+    @DisplayName("Добавление товара в корзину")
     public void addToCartTest(){
 
         HomePage homePage = new HomePage(context);
@@ -90,5 +96,5 @@ public class AllTests extends BaseTest{
 
     }
 
-    //*[contains(text(), 'Proteus')]/ancestor::li//button
+
 }
