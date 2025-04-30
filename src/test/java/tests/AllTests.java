@@ -1,8 +1,11 @@
 package tests;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.CartPage;
 import pages.HomePage;
+import pages.JacketPage;
 import pages.SignInPage;
 import utils.ConfigurationReader;
 
@@ -69,4 +72,20 @@ public class AllTests extends BaseTest{
         context.wait.until(ExpectedConditions.visibilityOf(homePage.wrongSearchMessage));
         assertEquals("Your search returned no results.", searchMessage);
     }
+
+    @Test
+    public void addToCartTest(){
+
+        HomePage homePage = new HomePage(context);
+        homePage.acceptCookie();
+        JacketPage jacketPage = homePage.goToJacketPage();
+        jacketPage.addToCart();
+
+        CartPage cartPage = new CartPage(context);
+        String expectedProductName = "Montana Wind Jacket";
+        cartPage.verifyCart(expectedProductName);
+
+    }
+
+    //*[contains(text(), 'Proteus')]/ancestor::li//button
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.ConfigurationReader;
 
 import java.util.List;
 
@@ -46,6 +47,10 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@class='message notice']//div[contains(text(), 'Your search returned no results')]")
     public WebElement wrongSearchMessage;
 
+    @FindBy(css = "#ui-id-5")
+    public WebElement menButton;
+
+
     public void acceptCookie() {
         try {
             context.wait.until(ExpectedConditions.elementToBeClickable(acceptCookieButton));
@@ -83,5 +88,10 @@ public class HomePage extends BasePage {
         new Actions(context.driver).scrollToElement(searchResults.get(0)).perform();
         context.wait.until(ExpectedConditions.visibilityOfAllElements(searchResults));
         return searchResults.get(0);
+    }
+
+    public JacketPage goToJacketPage(){
+        context.driver.get(ConfigurationReader.get("productUrl"));
+        return new JacketPage(context);
     }
 }
